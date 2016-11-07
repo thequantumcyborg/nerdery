@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="snack recommendation system">
+        <meta name="keywords" content="nerdery">
+        <meta name="author" content="Kirubel">
+
+        <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
+
+        <title>SnaFoo</title>
+
+        <!--Metru UI-->
+        <link href="@{'/public/stylesheets/metro.css'}" rel="stylesheet">
+        <link href="@{'/public/stylesheets/metro-icons.css'}" rel="stylesheet">
+        <link href="@{'/public/stylesheets/metro-responsive.css'}" rel="stylesheet">
+        <link href="@{'/public/stylesheets/metro-schemes.css'}" rel="stylesheet">
+        <link href="@{'/public/stylesheets/docs.css'}" rel="stylesheet">
+        <script src="@{'/public/javascripts/jquery-2.1.3.min.js'}"></script>
+        <script src="@{'/public/javascripts/metro.js'}"></script>
+        <script src="@{'/public/javascripts/docs.js'}"></script>
+
+    </head>
+    <body class="bg-darkTeal">
+
+
+        <div class="app-bar">
+            <a class="app-bar-element">
+                <span id="toggle-tiles-dropdown" class="mif-apps mif-2x"></span>
+                <div class="app-bar-drop-container" data-role="dropdown" data-toggle-element="#toggle-tiles-dropdown" data-no-close="false" style="width: 324px;">
+                    <div class="tile-container bg-white">
+                        <div class="tile-small bg-cyan">
+                            <div class="tile-content iconic">
+                                <h6>Home | Analytics</h6>
+                            </div>
+                        </div>
+                        <div class="tile-small bg-yellow">
+                            <div class="tile-content iconic">
+                                <h6>Snack Calender</h6>
+                            </div>
+                        </div>
+                        <div class="tile-small bg-red">
+                            <div class="tile-content iconic">
+                                <h6>Nutrition Guide</h6>
+                            </div>
+                        </div>
+                        <div class="tile-small bg-green">
+                            <div class="tile-content iconic">
+                                <h6>Calori Calc</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <div class="app-bar-divider"></div>
+
+            <div class="app-bar-element place-right">
+                <a class="dropdown-toggle fg-white"><span class="mif-thumbs-up mif-ani-bounce"></span> Vote</a>
+                <div class="app-bar-drop-container bg-white fg-dark place-right" data-role="dropdown" data-no-close="true" style="display: none;">
+                    <div class="padding20">
+                        <form action="/login" method="POST" role="form">
+                            <h4 class="text-light">login to vote</h4>
+                            <div class="input-control text">
+                                <span class="mif-user prepend-icon"></span>
+                                <input type="text">
+                            </div>
+                            <div class="input-control text">
+                                <span class="mif-lock prepend-icon"></span>
+                                <input type="password">
+                            </div>
+                            <label class="input-control checkbox small-check">
+                                <input type="checkbox">
+                                <span class="check"></span>
+                                <span class="caption">Remember me</span>
+                            </label>
+                            <div class="form-actions">
+
+                                <button type="submit" class="button">Login</button>
+                                <button class="button link">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-bar-divider place-right"></div>
+        </div>
+
+
+        <br><br><br>
+
+             <div align="center">
+            <button class="button loading-pulse lighten primary">Submit Feedback</button>
+            </div>
+                   
+        <div class="grid responsive">
+            <div class="row cells3">
+                <div class="cell"></div>
+                <div class="cell">
+
+                    <div class="input-control select full-size">
+
+                        <div class="tabcontrol" data-role="tabControl">
+                            <ul class="tabs">
+                                <li class="active"><a href="#frame_1_1">Selection</a></li>
+                                <li><a href="#frame_1_2">Suggestion</a></li>
+                               
+                            </ul>
+                            <div class="frames bg-grayLight">
+                                <div class="frame" id="frame_1_1" style="display: block;">
+
+                                    <select name="branch_id" class="form-control">
+
+                                        <option value="n/a">Select Snack</option>
+                                        #{list items:snacklist, as:'snack_name' }
+                                        <option value="${snack_name.getId()}">${snack_name.getName()}</option>
+                                        #{/list}
+
+                                    </select>
+
+                                </div>
+                                <div class="frame" id="frame_1_2" style="display: none;">
+                                    <font color="white"> <span class="mif-warning mif-ani-flash"></span> Selection or Suggestion, not both!</font> 
+
+                                    <div class="input-control text big-input full-size">
+                                        <input type="text">
+                                    </div>
+                                    <hr>
+                                    <div class="input-control text big-input full-size">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="cell"> </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+    </body>
+</html>
