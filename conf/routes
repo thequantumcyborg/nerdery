@@ -4,9 +4,11 @@
 
 # Home page
 GET     /                                       Application.index
+GET     /suggestion                                Application.suggestion
 
 
-POST    /login                                  Application.login               
+POST    /home                                  Application.home
+POST    /suggestion/submit                                     
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

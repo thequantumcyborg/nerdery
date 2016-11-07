@@ -94,62 +94,82 @@ and open the template in the editor.
             <div class="app-bar-divider place-right"></div>
         </div>
 
+        <br>
 
-        <br><br><br>
 
-             <div align="center">
-            <button class="button loading-pulse lighten primary">Submit Feedback</button>
-            </div>
-                   
-        <div class="grid responsive">
-            <div class="row cells3">
-                <div class="cell"></div>
-                <div class="cell">
 
-                    <div class="input-control select full-size">
+        <br>
 
-                        <div class="tabcontrol" data-role="tabControl">
-                            <ul class="tabs">
-                                <li class="active"><a href="#frame_1_1">Selection</a></li>
-                                <li><a href="#frame_1_2">Suggestion</a></li>
-                               
-                            </ul>
-                            <div class="frames bg-grayLight">
-                                <div class="frame" id="frame_1_1" style="display: block;">
+        <form action="/suggestion/submit" method="POST" role="form">
 
-                                    <select name="branch_id" class="form-control">
 
-                                        <option value="n/a">Select Snack</option>
-                                        #{list items:snacklist, as:'snack_name' }
-                                        <option value="${snack_name.getId()}">${snack_name.getName()}</option>
-                                        #{/list}
+            <div class="grid responsive" align="center">
+                <div class="row cells3">
+                    <div class="cell">
+                        <ul class="v-menu subdown block-shadow-impact min-size-required">
 
-                                    </select>
+                            <li><a href="#"><span class="mif-chart-line"></span> Stat </a> </li>
+                            <li><a href="#"><span class="mif-thumbs-up mif-ani-bounce"></span> Vote</a></li>
+                            <li class="active"><a href="/suggestion" ><span class="mif-paper-plane mif-ani-float mif-ani-slow"></span> Suggestion</a></li>
+                            <li><a href="#"><span class="mif-truck mif-ani-pass mif-ani-slow"></span> Shop</a></li>
 
-                                </div>
-                                <div class="frame" id="frame_1_2" style="display: none;">
-                                    <font color="white"> <span class="mif-warning mif-ani-flash"></span> Selection or Suggestion, not both!</font> 
+                        </ul>
+                    </div>
 
-                                    <div class="input-control text big-input full-size">
-                                        <input type="text">
+                    <div class="cell" >
+
+                        <div class="input-control select full-size">
+
+                            <div class="tabcontrol" data-role="tabControl">
+                                <ul class="tabs">
+                                    <li class="active"><a href="#frame_1_1">Selection</a></li>
+                                    <li><a href="#frame_1_2">Suggestion</a></li>
+
+                                </ul>
+                                <div class="frames bg-grayLight">
+                                    <div class="frame" id="frame_1_1" style="display: block;">
+                                        <br><br>
+                                        <select name="sid" class="form-control">
+
+                                            <option value="n/a">Select Snack</option>
+                                            #{list items:snacklist, as:'snack_name' }
+                                            <option value="${snack_name.getId()}">${snack_name.getName()}</option>
+                                            #{/list}
+
+                                        </select>
+
+
+                                        <button class="button loading-pulse lighten primary">Submit Feedback</button>
+
                                     </div>
-                                    <hr>
-                                    <div class="input-control text big-input full-size">
-                                        <input type="text">
+                                    <div class="frame" id="frame_1_2" style="display: none;">
+                                        <br><br>
+
+                                        <div class="input-control text big-input full-size">
+                                            <input type="text">
+                                        </div>
+                                        <hr>
+                                        <div class="input-control text big-input full-size">
+                                            <input type="text">
+                                        </div>
+                                        <br>
+
+                                        <button class="button loading-pulse lighten primary">Submit Feedback</button>
+
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
 
 
                     </div>
-                    <div class="cell"> </div>
-
+                    <div class="cell" ></div>
                 </div>
+
             </div>
-
-        </div>
-
+        </form>
 
 
 
