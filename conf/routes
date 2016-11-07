@@ -8,7 +8,7 @@ GET     /suggestion                                Application.suggestion
 
 
 POST    /home                                  Application.home
-POST    /suggestion/submit                                     
+POST    /suggestion/submit/selection           Application.post_suggestion_selection                        
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

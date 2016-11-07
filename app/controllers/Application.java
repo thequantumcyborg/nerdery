@@ -11,12 +11,11 @@ import models.*;
 public class Application extends Controller {
 
     //emp db exists, use this just for test
-
     private static String username = "seifu.kirubel64@gmail.com";
-    private static String eid = "ks001";
+    private static int eid = 1;
 
     public static void index() {
-        
+
         render();
     }
 
@@ -39,6 +38,7 @@ public class Application extends Controller {
     }
 
     public static void post_suggestion_selection(String sid, String user) throws IOException {
+        int verified_sid = Integer.parseInt(sid);
 
         boolean done = false;
         List snacklistAPI = Snack.getsnackList();
@@ -48,8 +48,12 @@ public class Application extends Controller {
         for (int i = 0; i < snacklistAPI.size(); i++) {
             snacklist.add((Snack) snacklistAPI.get(i));
         }
-
-        done = Suggest.postSelection(sid, eid);
+        
+        //create a snack object & persist to db
+        
+        
+        //persist snack id to suggestions roster 
+        done = Suggest.postSelection(verified_sid, eid);
         if (done) {
             String success = "Selection Submitted";
             //on v.2 send export refernce of snack name from snack object instead

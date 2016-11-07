@@ -30,21 +30,23 @@ import play.db.jpa.JPA;
  *
  * @author User
  */
-@Entity
-@Table(name = "suggest")
+// POJO Class Until JPA Fixed
+//@Entity
+//@Table(name = "suggest")
 public class Suggest {
-    @Id
+
+    // @Id
     private String suggest_id;
-    @Column(name = "eid")
+    //@Column(name = "eid")
     private String eid;
-    @Column(name = "snackid")
+    //@Column(name = "snackid")
     private String sid;
-    @Column(name = "stat_id")
+    //@Column(name = "stat_id")
     private String stat_id;
 
     public Suggest() {
     }
-   
+
     public Suggest(String suggest_id, String eid, String sid, String stat_id) {
         this.suggest_id = suggest_id;
         this.eid = eid;
@@ -84,35 +86,96 @@ public class Suggest {
         this.stat_id = stat_id;
     }
 
-    public static boolean postSelection(String sid, String eid) {
-       
-        
-        boolean status=false;
-        
-      EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "SnaFooAPI_JPA" );
+    public static boolean postSelection(int sid, int eid) {
+        ArrayList<Integer> arrayList = new ArrayList();
+        boolean status = false;
+        /*  on v.2 REFARCTOR TO JPA
+         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("defaultPersistenceUnit");
       
-      EntityManager entitymanager = emfactory.createEntityManager( );
-      entitymanager.getTransaction( ).begin( );
+         EntityManager entitymanager = emfactory.createEntityManager( );
+         entitymanager.getTransaction( ).begin( );
 
-      Suggest employee = new Suggest(); 
+         Suggest employee = new Suggest(); 
      
-      employee.setSuggest_id("s001");
-      employee.setEid("e001");
-      employee.setSid("snack1001");
-      employee.setStat_id("stat110");
-      entitymanager.persist( employee );
-      entitymanager.getTransaction( ).commit( );
+         employee.setSuggest_id("s001");
+         employee.setEid(eid);
+         employee.setSid(sid);
+         employee.setStat_id("stat110");
+         entitymanager.persist( employee );
+         entitymanager.getTransaction( ).commit( );
 
-      entitymanager.close( );
-      emfactory.close( );
- 
-       
-        status=true;
-        
-        
-        
+         entitymanager.close( );
+         emfactory.close( );
+         */
+
+        String url = "jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_98dc3582d5c864d?reconnect=true";
+        String user = "b196540d943a8f";
+        String pwd = "fbd4ea41";
+
+        Connection conn = null;
+        Statement stmt = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, pwd);
+            /*-----------------NEW ID GENERATION------------------*/
+            stmt = conn.createStatement();
+            String sql = "SELECT suggest_id\n"
+                    + "  FROM suggest;";
+            stmt.executeQuery(sql);
+            rs = stmt.getResultSet();
+
+            while (rs.next()) {
+                int b_seq = rs.getInt("suggest_id");
+
+                arrayList.add(b_seq);
+
+            }
+            rs.close();
+
+            Integer suggest_id = Collections.max(arrayList);
+
+            suggest_id = suggest_id + 1;
+            /*-----------------END ID GENERATION------------------*/
+
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO suggest (suggest_id, eid, sid,  stat_id) "
+                    + "VALUES (?,?,?,?);");
+            statement.setInt(1, suggest_id);
+            statement.setInt(2, eid);
+            statement.setInt(3, sid);
+            statement.setInt(4, 2);
+
+            statement.execute();
+            statement.close();
+
+            conn.close();
+            status = true;
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (SQLException se2) {
+            }// nothing we can do
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+
         return status;
-       
 
     }
 

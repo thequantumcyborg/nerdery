@@ -100,35 +100,36 @@ and open the template in the editor.
 
         <br>
 
-        <form action="/suggestion/submit" method="POST" role="form">
 
 
-            <div class="grid responsive" align="center">
-                <div class="row cells3">
-                    <div class="cell">
-                        <ul class="v-menu subdown block-shadow-impact min-size-required">
+        <div class="grid responsive" align="center">
+            <div class="row cells3">
+                <div class="cell">
+                    <ul class="v-menu subdown block-shadow-impact min-size-required">
 
-                            <li><a href="#"><span class="mif-chart-line"></span> Stat </a> </li>
-                            <li><a href="#"><span class="mif-thumbs-up mif-ani-bounce"></span> Vote</a></li>
-                            <li class="active"><a href="/suggestion" ><span class="mif-paper-plane mif-ani-float mif-ani-slow"></span> Suggestion</a></li>
-                            <li><a href="#"><span class="mif-truck mif-ani-pass mif-ani-slow"></span> Shop</a></li>
+                        <li><a href="#"><span class="mif-chart-line"></span> Stat </a> </li>
+                        <li><a href="#"><span class="mif-thumbs-up mif-ani-bounce"></span> Vote</a></li>
+                        <li class="active"><a href="/suggestion" ><span class="mif-paper-plane mif-ani-float mif-ani-slow"></span> Suggestion</a></li>
+                        <li><a href="#"><span class="mif-truck mif-ani-pass mif-ani-slow"></span> Shop</a></li>
 
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
 
-                    <div class="cell" >
+                <div class="cell" >
 
-                        <div class="input-control select full-size">
+                    <div class="input-control select full-size">
 
-                            <div class="tabcontrol" data-role="tabControl">
-                                <ul class="tabs">
-                                    <li class="active"><a href="#frame_1_1">Selection</a></li>
-                                    <li><a href="#frame_1_2">Suggestion</a></li>
+                        <div class="tabcontrol" data-role="tabControl">
+                            <ul class="tabs">
+                                <li class="active"><a href="#frame_1_1">Selection</a></li>
+                                <li><a href="#frame_1_2">Suggestion</a></li>
 
-                                </ul>
-                                <div class="frames bg-grayLight">
-                                    <div class="frame" id="frame_1_1" style="display: block;">
-                                        <br><br>
+                            </ul>
+                            <div class="frames bg-grayLight">
+                                <div class="frame" id="frame_1_1" style="display: block;">
+                                    <br><br>
+                                    <form action="/suggestion/submit/selection" method="POST" role="form">
+                                        <input type="hidden" name="user" value="${username}">
                                         <select name="sid" class="form-control">
 
                                             <option value="n/a">Select Snack</option>
@@ -139,37 +140,38 @@ and open the template in the editor.
                                         </select>
 
 
-                                        <button class="button loading-pulse lighten primary">Submit Feedback</button>
-
-                                    </div>
-                                    <div class="frame" id="frame_1_2" style="display: none;">
-                                        <br><br>
-
+                                        <button type="submit" class="button loading-pulse lighten primary">Submit Feedback</button>
+                                    </form>
+                                </div>
+                                <div class="frame" id="frame_1_2" style="display: none;">
+                                    <br><br>
+                                    <form action="/suggestion/submit/box" method="POST" role="form">
+                                        <input type="hidden" name="user" value="${username}">
                                         <div class="input-control text big-input full-size">
-                                            <input type="text">
+                                            <input type="text" placeholder="snack name">
                                         </div>
                                         <hr>
                                         <div class="input-control text big-input full-size">
-                                            <input type="text">
+                                            <input type="text" placeholder="snack location">
                                         </div>
                                         <br>
 
                                         <button class="button loading-pulse lighten primary">Submit Feedback</button>
-
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-
-
                         </div>
 
 
                     </div>
-                    <div class="cell" ></div>
+
+
                 </div>
-
+                <div class="cell" ></div>
             </div>
-        </form>
+
+        </div>
+    </form>
 
 
 
@@ -177,5 +179,5 @@ and open the template in the editor.
 
 
 
-    </body>
+</body>
 </html>
